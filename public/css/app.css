@@ -4,11 +4,10 @@
 .tabla{
     font-size: 25px;
     font-family: 'masthead-heading';
-    
-    
 }
 
-.tabla.head{
-    
-
+.rad{
+    width: 300px;
+    height: 300px;
 }
+
