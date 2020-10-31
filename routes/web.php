@@ -17,11 +17,19 @@ Route::get('/', function () {
     return view('inicio');
 });
 
-// Route::get('/descargas', function () {
-//     return view('descargas');
+// Route::post('/convertir', function () {
+//     return Response::json(  
+//         array(
+//                 'user_id' => Auth::user()->id,
+//                 'link' => request()->link,
+//                 'format'=> request()->formato
+//         ));
+//     // dd(request()->all(), Auth::user()->id);
 // });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/descargas', [App\Http\Controllers\HomeController::class, 'descargas'])->name('descargas');
+
+Route::post('/convertir', [App\Http\Controllers\HomeController::class, 'convertir'])->name('convertir');

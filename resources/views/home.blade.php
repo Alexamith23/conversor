@@ -7,7 +7,7 @@
 
         <div class="col-md-12">
             <hr>
-            <form method="POST" action="">
+            <form method="POST" action="/convertir">
                 @csrf
                 <!-- Text area -->
                 <div class="row">
@@ -19,7 +19,7 @@
                 <!-- Select tipo -->
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
-                        <select class="form-control input" id="tipo">
+                        <select class="form-control input" id="tipo" name="tipo">
                             <option onclick="llenar('limpiar')">Seleccione un tipo</option>
                             <option onclick="llenar('audio')">Audio</option>
                             <option onclick="llenar('video')">Video</option>
@@ -29,7 +29,7 @@
                 <!-- Select -->
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
-                        <select class="form-control input" id="formato">
+                        <select class="form-control input" id="formato" name="formato">
                         </select>
                     </div>
                 </div><br>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section ('relleno')
 <h1 class="masthead-heading mb-0">¡Descarga tus videos</h1>
-<h2 class="masthead-subheading mb-0">favoritos en el formato que quieras!</h2>
+<h2 class="masthead-subheading mb-0">favoritos en formatos como .mp4, .flv, .mp3, .oppus y muchos más!</h2>
 <a href="{{ route('login') }}" class="btn btn-primary btn-xl rounded-pill mt-5">Entrar</a>
 @endsection
 

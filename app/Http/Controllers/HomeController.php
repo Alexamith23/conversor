@@ -34,4 +34,18 @@ class HomeController extends Controller
     {
         return view('descargas');
     }
+
+    public function convertir()
+    {
+        
+        $descarga =  array(
+            'user_id' => \Auth::user()->id,
+            'link' => request()->link,
+            'format' => request()->formato
+        );
+
+        $command = require_once 'producer.php';
+
+        // dd($command);
+    }
 }
