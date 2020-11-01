@@ -104,7 +104,7 @@
             <div class="bg-circle-2 bg-circle"></div>
             <div class="bg-circle-3 bg-circle"></div>
             <div class="bg-circle-4 bg-circle"></div>
-            
+
         </header>
         @yield('content')
     </div>
@@ -115,6 +115,14 @@
         </div>
         <!-- /.container -->
     </footer>
+    <script>
+        function mostrar_modal() {
+            $('#espere').modal('show');
+        }
+        function mostrar_modal_descarga() {
+            $('#modal_descarga').modal('show');
+        }
+    </script>
 </body>
 
 </html>

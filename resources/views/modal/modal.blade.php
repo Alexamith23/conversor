@@ -2,7 +2,9 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <center><h5 class="modal-title" id="exampleModalLabel">Por favor espere mientras se convierte</h5></center>
+                <center>
+                    <h5 class="modal-title" id="exampleModalLabel">Por favor espere mientras se convierte</h5>
+                </center>
             </div>
             <div class="modal-body">
                 <div class="progress">

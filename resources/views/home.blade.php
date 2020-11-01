@@ -10,7 +10,7 @@
                 @csrf
                 <input type="hidden" id="cola" name="cola">
                 <!-- Text area -->
-                
+
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
                         <textarea rows="2" class="form-control input" placeholder="https://www.youtube.com/watch?v=QkI-8FVwWso" id="link" name="link" required data-validation-required-message="Please enter a message."></textarea>
@@ -36,47 +36,42 @@
                 </div><br>
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
-                        <button class="btn btn-primary btn-lg form-control input" onclick="numero_cola()" type="submit">Convertir</button><br><br>
+                        <button class="btn btn-primary btn-lg form-control input" onclick="numero_cola(); mostrar_modal()" type="submit">Convertir</button><br><br>
                     </div>
                 </div>
             </form>
-
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    @isset ($archivo)
+                    <br>
+                    <a onclick="mostrar($archivo)" href="#" class="btn btn-success btn-lg form-control input">Descargar</a>
+                    <!-- <a href="/download/{{$archivo}}" class="btn btn-success btn-lg form-control input">Descargar</a> -->
+                    @endisset
+                </div>
+            </div>
         </div>
     </div>
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-        
-            $.ajax({
-               type:'POST',
-               url:'/convertir',
-               data:{
-                   _token:$('input[name="_token"]'),
-               success:function(data) {
-                  alert(data.msg);
-               }}
-            });
-         
-    </script> -->
+
 
     <script>
-    function numero_cola() {
-        if(localStorage.getItem("cola") === null){
-            localStorage.setItem("cola", 1);
-            
-        }else{
-            let cola = localStorage.getItem("cola");
-            if (cola == 5) {
-                cola = 1;
-            }else{
-                cola++;
-            }
-            document.getElementById('cola').value = cola;
-            localStorage.setItem("cola", cola);
+        function mostrar(hola) {
+            alert(hola);
         }
-    }
-        
-        
+        function numero_cola() {
+            if (localStorage.getItem("cola") === null) {
+                localStorage.setItem("cola", 1);
 
+            } else {
+                let cola = localStorage.getItem("cola");
+                if (cola == 5) {
+                    cola = 1;
+                } else {
+                    cola++;
+                }
+                document.getElementById('cola').value = cola;
+                localStorage.setItem("cola", cola);
+            }
+        }
 
         const $select = $("#formato");
         let formatos_audio = ["mp3", "ogg", , "oppus", , "flac"];
@@ -104,7 +99,6 @@
 
             $('#formato').prop("disabled", false);
         }
-        // $('#espere').modal('show');
     </script>
 </div>
 @endsection

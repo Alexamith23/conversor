@@ -17,15 +17,27 @@ Route::get('/', function () {
     return view('inicio');
 });
 
-// Route::post('/convertir', function () {
-//     $msg = "This is a simple message.";
-//     return view('home',['respuesta'=>$msg]); 
-//     // response()->json(array('msg'=> $msg), 200);
-// });
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/descargas', [App\Http\Controllers\HomeController::class, 'descargas'])->name('descargas');
 
 Route::post('/convertir', [App\Http\Controllers\HomeController::class, 'convertir'])->name('convertir');
+
+
+
+// Rutas para los archivos
+Route::get('/descargar', function () {
+    return view('descargar');
+});
+
+Route::post('/media', function () {
+    
+    request()->file->storeAs('uploads', request()->file->getClientOriginalName());
+    $ruta_donde_se_almaceno_el_archivo = request()->file->getClientOriginalName();
+    return view('descargar',['archivo' => $ruta_donde_se_almaceno_el_archivo]);
+});
+
+Route::get('/download/{file}', function ($file) {
+    return Storage::download("uploads/$file");
+});

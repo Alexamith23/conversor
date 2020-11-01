@@ -44,6 +44,7 @@ class HomeController extends Controller
         "format" => request()->formato,
         "queue" => request()->cola];
         $command = exec('php C:\xampp\htdocs\login\app\Http\Controllers\producer.php '. json_encode($descarga));
-        return $command;
+        // return $command;
+        return view('home',['archivo' => $command]);
     }
 }
