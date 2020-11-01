@@ -29,6 +29,7 @@
 </head>
 
 <body>
+    @include ('modal.modal')
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
             <div class="container">

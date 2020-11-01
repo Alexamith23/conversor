@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    
     /**
      * Create a new controller instance.
      *
@@ -38,14 +39,11 @@ class HomeController extends Controller
     public function convertir()
     {
         
-        $descarga =  array(
-            'user_id' => \Auth::user()->id,
-            'link' => request()->link,
-            'format' => request()->formato
-        );
-
-        $command = require_once 'producer.php';
-
-        // dd($command);
+        $descarga = ["user_id" => \Auth::user()->id,
+        "link" => request()->link,
+        "format" => request()->formato,
+        "queue" => request()->cola];
+        $command = exec('php C:\xampp\htdocs\login\app\Http\Controllers\producer.php '. json_encode($descarga));
+        return $command;
     }
 }

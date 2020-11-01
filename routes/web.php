@@ -18,13 +18,9 @@ Route::get('/', function () {
 });
 
 // Route::post('/convertir', function () {
-//     return Response::json(  
-//         array(
-//                 'user_id' => Auth::user()->id,
-//                 'link' => request()->link,
-//                 'format'=> request()->formato
-//         ));
-//     // dd(request()->all(), Auth::user()->id);
+//     $msg = "This is a simple message.";
+//     return view('home',['respuesta'=>$msg]); 
+//     // response()->json(array('msg'=> $msg), 200);
 // });
 
 Auth::routes();
