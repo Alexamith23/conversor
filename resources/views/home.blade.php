@@ -52,7 +52,6 @@
         </div>
     </div>
 
-
     <script>
         function mostrar(hola) {
             alert(hola);

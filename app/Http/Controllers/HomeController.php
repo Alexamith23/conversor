@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+require_once 'C:\xampp\htdocs\login\vendor\autoload.php';
+
+use PhpAmqpLib\Connection\AMQPStreamConnection;
+use PhpAmqpLib\Message\AMQPMessage;
+
 class HomeController extends Controller
 {
-    
+
     /**
      * Create a new controller instance.
      *
@@ -38,13 +43,25 @@ class HomeController extends Controller
 
     public function convertir()
     {
-        
-        $descarga = ["user_id" => \Auth::user()->id,
+
+        $descarga = [
+        "queue" => request()->cola,
+        "user_id" => \Auth::user()->id,
         "link" => request()->link,
-        "format" => request()->formato,
-        "queue" => request()->cola];
-        $command = exec('php C:\xampp\htdocs\login\app\Http\Controllers\producer.php '. json_encode($descarga));
-        // return $command;
-        return view('home',['archivo' => $command]);
+        "format" => request()->formato];
+        $this->producer(json_encode($descarga));
+        return view('home');
+    }
+
+    function producer($descarga)
+    {
+        $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
+        $channel = $connection->channel();
+        $msg = new AMQPMessage($descarga);
+        $channel->queue_declare('1', false, false, false, false);
+        $channel->basic_publish($msg, '', '1');
+        $channel->close();
+        $connection->close();
     }
 }
+
