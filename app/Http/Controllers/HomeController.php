@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Descarga;
 use Illuminate\Http\Request;
 
 require_once 'C:\xampp\htdocs\login\vendor\autoload.php';
@@ -38,7 +39,18 @@ class HomeController extends Controller
     }
     public function descargas()
     {
-        return view('descargas');
+        $users_descargas = \DB::select('select * from descargas where user_id = '.\Auth::user()->id, [1]);
+    
+        if (!empty($users_descargas)) {
+            return view('descargas', ["procesos"=>$users_descargas]);
+        }else{
+            return view('descargas', ["Vacio"=>"Todavía no tienes descargas procesadas"]);
+        }
+    }
+    public function delete($id){
+        $tarea = Descarga::find($id);
+        $tarea->delete();
+        return redirect('/descargas');
     }
 
     public function convertir()
@@ -49,8 +61,9 @@ class HomeController extends Controller
         "user_id" => \Auth::user()->id,
         "link" => request()->link,
         "format" => request()->formato];
-        $this->producer(json_encode($descarga));
-        return view('home');
+        // $this->producer(json_encode($descarga));
+        Descarga::create($descarga);
+        return $this->descargas();
     }
 
     function producer($descarga)
@@ -63,5 +76,6 @@ class HomeController extends Controller
         $channel->close();
         $connection->close();
     }
+    
 }
 

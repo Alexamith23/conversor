@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/descargas', [App\Http\Controllers\HomeController::class, 'descargas'])->name('descargas');
-
+Route::get('/descargas/{id}', [App\Http\Controllers\HomeController::class, 'delete'])->name('delete');
 Route::post('/convertir', [App\Http\Controllers\HomeController::class, 'convertir'])->name('convertir');
 
 

@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Descarga extends Model
 {
     use HasFactory;
-    protected $fillable= ['id','user_id','link'];
+    protected $fillable= ['id','queue','user_id','link','format'];
 }
