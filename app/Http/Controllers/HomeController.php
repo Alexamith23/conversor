@@ -55,14 +55,14 @@ class HomeController extends Controller
 
     public function convertir()
     {
-
+        //Cambiar la base de datos en la posicion queeuq
         $descarga = [
-        "queue" => request()->cola,
+        "id" => request()->cola,
         "user_id" => \Auth::user()->id,
         "link" => request()->link,
         "format" => request()->formato];
-        // $this->producer(json_encode($descarga));
-        Descarga::create($descarga);
+        $this->producer(json_encode($descarga));
+        // Descarga::create($descarga);
         return $this->descargas();
     }
 
@@ -71,8 +71,8 @@ class HomeController extends Controller
         $connection = new AMQPStreamConnection('localhost', 5672, 'guest', 'guest');
         $channel = $connection->channel();
         $msg = new AMQPMessage($descarga);
-        $channel->queue_declare('1', false, false, false, false);
-        $channel->basic_publish($msg, '', '1');
+        $channel->queue_declare($descarga[7], false, false, false, false);
+        $channel->basic_publish($msg, '', $descarga[7]);
         $channel->close();
         $connection->close();
     }
